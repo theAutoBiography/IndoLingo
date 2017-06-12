@@ -1,0 +1,172 @@
+{% extends 'layoutAfterLogin.html' %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block head %}
+
+    <style>
+    body{
+        margin-top: 100px;
+        background: #FFFFFF;
+        font-family: 'Titillium Web', sans-serif;
+    }
+
+    h2,h3,h4,h5,h6{
+            font-family: Poppins;
+    }
+
+    h1{
+      font-family: 'Indie Flower', cursive;
+    }
+
+    p{
+        font-family: Roboto;
+        font-size: 16px;
+    }
+
+    /*.navbar-default{
+        background: #fff;
+        border:0;
+        font-family: 'Poppins', sans-serif;
+
+    }
+
+    .navbar-brand{
+        font-size: 20px;
+        color: #000 !important;
+        font-weight: bold;
+    }
+
+    .navbar{
+      background-color: #00BFFF;
+    }*/
+
+    a {
+      text-decoration: none;
+      color: #00BFFF;
+      -webkit-transition: .5s ease;
+      transition: .5s ease;
+      font-family: 'Indie Flower', cursive;
+    }
+
+    a:hover {
+      color: 	#4169E1;
+    }
+
+    #showcase .list-lesson p {
+      height:80px;
+      overflow:hidden;
+      color:#999;
+      text-overflow:ellipsis;
+      margin-bottom:10px
+    }
+
+
+
+    #showcase .list-lesson-item.past .inner {
+      -webkit-box-shadow:0 0 10px rgba(0,0,0,0.15);
+      -moz-box-shadow:0 0 10px rgba(0,0,0,0.15);
+      box-shadow:0 0 10px rgba(0,0,0,0.15)
+    }
+
+    #showcase .list-lesson-item .inner {
+      -webkit-border-radius:10px;
+      -moz-border-radius:10px;
+      border-radius:10px;
+      margin:15px;
+      padding:20px
+    }
+
+    #showcase h1{
+        font-size: 50px;
+        margin-bottom: 30px;
+
+    }
+
+    #showcase img{
+
+        width: 80%;
+        margin-left: 60px;
+    }
+
+    #showcase .showcase-right{
+        margin-top: 90px;
+    }
+
+    #testimonial{
+        background: #f1f1f1;
+        padding: 50px 0 30px 0;
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    #testimonial p{
+        font-size: 32px;
+        font-family: 'Josefin-sans';
+        color: #000;
+    }
+
+    #testimonial p.customer{
+        font-size: 20px;
+        color: #666;
+    }
+
+    #about1 {
+            margin-top: 90px;
+    }
+
+
+    #about1 img{
+            width: 50%;
+            margin-left: 60px;
+    }
+
+    #about2 {
+            margin: 20px 0 60px 0;
+    }
+
+    #contact{
+        /*background: url(../img/contact.png);*/
+        padding: 30px;
+        color: #000;
+        border-top: #333 7px solid;
+        border-bottom: #333 7px solid;
+    }
+
+    footer{
+        padding: 30px;
+    }
+
+    #lesson-showcase img{
+      width: 50%;
+      margin-left: 60px;
+
+    }
+
+    </style>
+{% endblock %}
+
+{% block body %}
+<section class="showcase">
+  <div class="container">
+    <div class="col-md-6 col-sm-6">
+      <div class="jumbotron">
+        <h1>This space is to list down the lessons. Wait for more details.</h1>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6">
+      <div class="row">
+        <h2>This space is to how the daily progress</h2>
+      </div>
+      <div class="row">
+        <h2>This space is to challenge your friends</h2>
+      </div>
+      <div class="row">
+        <h2>This space is for duolingo advertisement</h2>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

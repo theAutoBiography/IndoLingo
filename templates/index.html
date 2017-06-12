@@ -1,0 +1,315 @@
+{% extends 'layoutHomePage.html' %}
+
+{% block title %}
+Indolingo Home
+{% endblock %}
+
+{% block head %}
+
+    <style>
+    body{
+        margin-top: 100px;
+        background: #FFFFFF;
+        font-family: 'Titillium Web', sans-serif;
+    }
+
+    h2,h3,h4,h5,h6{
+            font-family: Poppins;
+    }
+
+    h1{
+      font-family: 'Indie Flower', cursive;
+    }
+
+    p{
+        font-family: Roboto;
+        font-size: 16px;
+    }
+
+    /*.navbar-default{
+        background: #fff;
+        border:0;
+        font-family: 'Poppins', sans-serif;
+
+    }
+
+    .navbar-brand{
+        font-size: 20px;
+        color: #000 !important;
+        font-weight: bold;
+    }
+
+    .navbar{
+      background-color: #00BFFF;
+    }*/
+
+    a {
+      text-decoration: none;
+      color: #00BFFF;
+      -webkit-transition: .5s ease;
+      transition: .5s ease;
+      font-family: 'Indie Flower', cursive;
+    }
+
+    a:hover {
+      color: 	#4169E1;
+    }
+
+    #showcase .list-lesson p {
+      height:80px;
+      overflow:hidden;
+      color:#999;
+      text-overflow:ellipsis;
+      margin-bottom:10px
+    }
+
+
+
+    #showcase .list-lesson-item.past .inner {
+      -webkit-box-shadow:0 0 10px rgba(0,0,0,0.15);
+      -moz-box-shadow:0 0 10px rgba(0,0,0,0.15);
+      box-shadow:0 0 10px rgba(0,0,0,0.15)
+    }
+
+    #showcase .list-lesson-item .inner {
+      -webkit-border-radius:10px;
+      -moz-border-radius:10px;
+      border-radius:10px;
+      margin:15px;
+      padding:20px
+    }
+
+    #showcase h1{
+        font-size: 50px;
+        margin-bottom: 30px;
+
+    }
+
+    #showcase img{
+
+        width: 80%;
+        margin-left: 60px;
+    }
+
+    #showcase .showcase-right{
+        margin-top: 90px;
+    }
+
+    #testimonial{
+        background: #f1f1f1;
+        padding: 50px 0 30px 0;
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    #testimonial p{
+        font-size: 32px;
+        font-family: 'Josefin-sans';
+        color: #000;
+    }
+
+    #testimonial p.customer{
+        font-size: 20px;
+        color: #666;
+    }
+
+    #about1 {
+            margin-top: 90px;
+    }
+
+
+    #about1 img{
+            width: 50%;
+            margin-left: 60px;
+    }
+
+    #about2 {
+            margin: 20px 0 60px 0;
+    }
+
+    #contact{
+        /*background: url(../img/contact.png);*/
+        padding: 30px;
+        color: #000;
+        border-top: #333 7px solid;
+        border-bottom: #333 7px solid;
+    }
+
+    footer{
+        padding: 30px;
+    }
+
+    #lesson-showcase img{
+      width: 50%;
+      margin-left: 60px;
+
+    }
+
+    </style>
+
+
+{% endblock %}
+
+{% block body %}
+<section id="showcase">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="showcase-left">
+                    <img src="{{url_for('static', filename='intro-bg.jpg')}}" alt="IndoLingo">
+                    <!---<img src="/static/intro-bg.jpg" alt="IndoLingo">-->
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="showcase-right">
+                    <h1>IndoLingo</h1>
+                    <p>Learn an Indian language anytime, anywhere! With Indoligo, it's as easy as learning your mother-tongue.</p>
+
+                </div>
+                <br>
+                <a class="btn btn-default showcase-btn" style="background-color:#1ab188">Know More</a>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section id="testimonial">
+    <div class="container">
+        <p>"aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+        <p class="customer">Ramanan, BITSP</p>
+        <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea "</p>
+        <p class="customer">Easwaran, IITM</p>
+
+    </div>
+
+</section>
+
+<section id="about1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="info-left">
+                    <img src="{{url_for('static', filename='tlci.png')}}" alt="IndoLingo-Logo">
+
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="info-right">
+                    <h2>About IndoLingo</h2>
+                    <p>You can learn any of the Indian languages using BharatBhasha. It's as easy as learning your mother tongue. Do you already know English? <a href="#">Click Here</a> to check out the languages that you can learn now. Explore India's beauty by speaking, reading and writing the classical Indian languages.</p>
+                    <br>
+                    <a class="btn btn-default btn">Know More</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<hr>
+<section id="about2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="info-left">
+                    <h2>Info Block 1</h2>
+                    <p>You can learn any of the Indian languages using BharatBhasha. It's as easy as learning your mother tongue. Do you already know English? <a href="#">Click Here</a> to check out the languages that you can learn now. Explore India's beauty by speaking, reading and writing the classical Indian languages.</p>
+
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="info-right">
+                    <h2>Info Block 2</h2>
+                    <p>You can learn any of the Indian languages using BharatBhasha. It's as easy as learning your mother tongue. Do you already know English? <a href="#">Click Here</a> to check out the languages that you can learn now. Explore India's beauty by speaking, reading and writing the classical Indian languages.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 col-sm-5">
+                <form>
+                    <div class="form-group">
+                        <label for="email">Email address:</label>
+                        <input type="email" class="form-control" id="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Phone:</label>
+                        <input type="password" class="form-control" id="pwd">
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox"> Remember me</label>
+                    </div>
+                      <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+            <div class="col-md-7 col-sm-7">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    <p class="text-center">Copyright &copy IndoLingo</p>
+</footer>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.js"
+      integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+      crossorigin="anonymous"></script>
+    <script src= "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+        window.sr = ScrollReveal();
+        sr.reveal('.navbar',{
+            duration: 2000,
+            origin: 'bottom'
+        });
+
+        sr.reveal('.showcase-right',{
+            duration: 2000,
+            origin: 'right',
+            distance:'300px'
+        });
+        sr.reveal('.showcase-left',{
+            duration: 2000,
+            origin: 'top',
+            distance:'300px'
+        });
+        sr.reveal('.showcase-btn',{
+            duration: 2000,
+            delay:2000,
+            origin: 'bottom'
+        });
+        sr.reveal('#testimonial div',{
+            duration: 2000,
+            origin: 'bottom'
+        });
+        sr.reveal('.info-right',{
+            duration: 2000,
+            origin: 'right',
+            distance:'300px',
+            viewFactor:0.2
+        });
+        sr.reveal('.info-left',{
+            duration: 2000,
+            origin: 'left',
+            distance:'300px',
+            viewFactor:0.2
+        });
+
+    </script>
+
+    {% endblock %}

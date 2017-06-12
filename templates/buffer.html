@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <!-- Beginning of head -->
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Title</title>
+
+        <!-- Bootstrap and jQuery-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+        <script type="text/javascript" >
+               google.load("jquery", "1.6.3");
+               google.load("jqueryui", "1.8.16");
+        </script>
+        <script>
+               $('.carousel[data-type="multi"] .item').each(function(){
+                 var next = $(this).next();
+                 if (!next.length) {
+                   next = $(this).siblings(':first');
+                 }
+                 next.children(':first-child').clone().appendTo($(this));
+
+                 for (var i=0;i<2;i++) {
+                   next=next.next();
+                   if (!next.length) {
+                   	next = $(this).siblings(':first');
+                 	}
+
+                   next.children(':first-child').clone().appendTo($(this));
+                 }
+               });
+        </script>
+        <style>
+          .carousel-control 			 { width:  4%; }
+          .carousel-control.left,.carousel-control.right {margin-left:15px;background-image:none;}
+          @media (max-width: 767px) {
+           .carousel-inner .active.left { left: -100%; }
+           .carousel-inner .next        { left:  100%; }
+           .carousel-inner .prev		 { left: -100%; }
+           .active > div { display:none; }
+           .active > div:first-child { display:block; }
+
+          }
+          @media (min-width: 767px) and (max-width: 992px ) {
+           .carousel-inner .active.left { left: -50%; }
+           .carousel-inner .next        { left:  50%; }
+           .carousel-inner .prev		 { left: -50%; }
+           .active > div { display:none; }
+           .active > div:first-child { display:block; }
+           .active > div:first-child + div { display:block; }
+          }
+          @media (min-width: 992px ) {
+           .carousel-inner .active.left { left: -25%; }
+           .carousel-inner .next        { left:  25%; }
+           .carousel-inner .prev		 { left: -25%; }
+          }
+
+        </style>
+        </head>
+        <body>
+          <div class="col-md-12 text-center"><h3>Product Carousel</h3></div>
+   <div class="col-md-6 col-md-offset-3">
+   <div class="carousel slide" data-ride="carousel" data-type="multi" data-interval="3000" id="myCarousel">
+     <div class="carousel-inner">
+       <div class="item active">
+         <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=1" class="img-responsive"></a></div>
+       </div>
+       <div class="item">
+         <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/e477e4/fff&amp;text=2" class="img-responsive"></a></div>
+       </div>
+       <div class="item">
+         <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/eeeeee&amp;text=3" class="img-responsive"></a></div>
+       </div>
+       <div class="item">
+         <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/f4f4f4&amp;text=4" class="img-responsive"></a></div>
+       </div>
+       <div class="item">
+         <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/f566f5/333&amp;text=5" class="img-responsive"></a></div>
+       </div>
+       <div class="item">
+         <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/f477f4/fff&amp;text=6" class="img-responsive"></a></div>
+       </div>
+       <div class="item">
+         <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/eeeeee&amp;text=7" class="img-responsive"></a></div>
+       </div>
+       <div class="item">
+         <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/fcfcfc/333&amp;text=8" class="img-responsive"></a></div>
+       </div>
+     </div>
+     <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+     <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+   </div>
+   </div>
+
+</body>
+</html>
