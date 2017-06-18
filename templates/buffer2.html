@@ -149,9 +149,9 @@ Flashcards
 
 
 {% block body %}
-<div class="row" id="flashcardrow">
+<div class="row">
   <div class="col-md-3 col-sm-3">
-    <!---Empty div-->
+
   </div>
   <div class="col-md-1 col-sm-1">
     <div class="previous">
@@ -175,11 +175,11 @@ Flashcards
     <div id="card-2" class="card">
       <div class="front" style="border-radius:25px;">
         <hr><center>
-          <h2 id="flashcardworddisplay" style="color:white; vertical-align: middle; display: inline-block;"></h2>
+          <h2 style="color:white; vertical-align: middle; display: inline-block;">Word</h2>
           <br>
-        <hr><br>
-        <div style="height:50px; width:100%; background-color:#EF861E;border-radius:30px">
-          <p id="flashcardmeaningdisplay" style="font-size:20px;color:white;padding:15px 0 5px 5px"></p>
+        <hr>
+        <div style="height:100%; width:100%; background-color:#EF861E;border-radius:30px">
+          <p style="font-size:20px;color:white;padding:15px 0 5px 5px">Click for meaning</p>
         </div>
         </center>
       </div>
@@ -204,16 +204,14 @@ Flashcards
   </div>
 </div>
 <hr><br>
-
 <div class="row">
   <div class="col-md-2 col-sm-2">
-    <!---Empty row-->
-  </div>
 
+  </div>
   <div class="col-md-8 col-sm-8">
-    <div class="jumbotron" id="addrow">
-      <div class="row" id="addword">
-      <!--  <div class="col-md-4 col-sm-4">
+    <div class="jumbotron">
+      <div class="row">
+        <div class="col-md-2 col-sm-2">
           <div class="flashcardwords">
             <center>
               <div class="shrinkCardFront">
@@ -222,7 +220,7 @@ Flashcards
             </center>
           </div>
         </div>
-        <div class="col-md-4 col-sm-4">
+        <div class="col-md-2 col-sm-2">
           <div class="flashcardwords">
             <center>
               <div class="shrinkCardFront">
@@ -231,7 +229,7 @@ Flashcards
             </center>
           </div>
         </div>
-        <div class="col-md-4 col-sm-4">
+        <div class="col-md-2 col-sm-2">
           <div class="flashcardwords">
             <center>
               <div class="shrinkCardFront">
@@ -239,18 +237,66 @@ Flashcards
               </div>
             </center>
           </div>
-        </div>--><h2 onclick="populate()"></h2>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <div class="flashcardwords">
+            <center>
+              <div class="shrinkCardFront">
+                <h2>Word</h2>
+              </div>
+            </center>
+          </div>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <div class="flashcardwords">
+            <center>
+              <div class="shrinkCardFront">
+                <h2>Word</h2>
+              </div>
+            </center>
+          </div>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <div class="flashcardwords">
+            <center>
+              <div class="shrinkCardFront">
+                <h2>Word</h2>
+              </div>
+<!---              <br><br>
+              <div class="shrinkCardBack">
+                <h2>Word</h2>
+-->              </div>
+            </center>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <div class="col-md-2 col-sm-2">
-    <!--Empty div-->
+
   </div>
 </div>
+
+
     <br><hr><br>
-
-
   <script>
+
+    $(function(){
+      $("#card-1").flip({
+        axis: "y", // y or x
+        reverse: false, // true and false
+        trigger: "hover", // click or hover
+        speed: '500',
+        front: $('.other-front'),
+        back: $('.other-back'),
+        autoSize: false
+      });
+      $("#card-2").flip({
+        axis: "x",
+        reverse: true,
+        trigger: "click"
+      });
+    });
 
 /*    $(function(){
       $(".flashcardwords").flip({
@@ -261,55 +307,12 @@ Flashcards
         autoSize: false
       });
     });*/
-    function populate(){
-      alert($(this).attr('id'));
-    }
 
-      window.onload = function(){
-        $("#card-1").flip({
-          axis: "y", // y or x
-          reverse: false, // true and false
-          trigger: "hover", // click or hover
-          speed: '500',
-          front: $('.other-front'),
-          back: $('.other-back'),
-          autoSize: false
-        });
-        $("#card-2").flip({
-          axis: "x",
-          reverse: true,
-          trigger: "click"
-        });
-
-        $.ajax({
-          type : 'POST',
-          url : '/flashcardwords',
-          contentType: "application/json; charset=utf-8"
-        })
-        .done(function(data) {
-          if (data.error) {
-            $('#flashcardrow').hide();
-            $('#addword').text(data.error);
-          }
-          else {
-            //var obj = data.words.replace("[","|").replace("]","|").split("|");
-            //obj[1]+="\"word\":joy,\"meaning\":\"a feeling of great pleasure and happiness.\"";
-            var obj = data.words;
-            alert(obj);
-            var object = JSON.parse(obj);
-            alert(object[0].meaning);
-            //alert(object["word"]);
-            for(i=0;i<object.length;i++){
-              $("#addword").append("<div class='col-md-4 col-sm-4'><div class='flashcardwords'><center><div class='shrinkCardFront'><button id='"+object[i].word+"' onclick='populate()'>" +object[i].word+"</button></div></center></div></div>");
-
-
-              if(i%3==2){
-                  $("#addword").append("<br><br><br><br>");
-              }
-            }
-          }
-        });
-      };
+    $(document).ready(function(){
+      $(".flashcardwords").load(function(){
+        $(".flashcardwords").html("<center><div class='shrinkCardFront'><h2>Word</h2></div></center>")
+      });
+    });
 
   </script>
 {% endblock %}

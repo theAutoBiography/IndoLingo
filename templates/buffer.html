@@ -1,102 +1,349 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'layoutAfterLogin.html' %}
 
-    <!-- Beginning of head -->
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+{% block title %}
+Translate
+{% endblock %}
 
-        <title>Title</title>
 
-        <!-- Bootstrap and jQuery-->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css"/>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="http://www.google.com/jsapi" type="text/javascript"></script>
-        <script type="text/javascript" >
-               google.load("jquery", "1.6.3");
-               google.load("jqueryui", "1.8.16");
-        </script>
-        <script>
-               $('.carousel[data-type="multi"] .item').each(function(){
-                 var next = $(this).next();
-                 if (!next.length) {
-                   next = $(this).siblings(':first');
-                 }
-                 next.children(':first-child').clone().appendTo($(this));
+{% block head %}
+<style>
 
-                 for (var i=0;i<2;i++) {
-                   next=next.next();
-                   if (!next.length) {
-                   	next = $(this).siblings(':first');
-                 	}
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        border-radius: 25px;
+        min-width: 130px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
 
-                   next.children(':first-child').clone().appendTo($(this));
-                 }
-               });
-        </script>
-        <style>
-          .carousel-control 			 { width:  4%; }
-          .carousel-control.left,.carousel-control.right {margin-left:15px;background-image:none;}
-          @media (max-width: 767px) {
-           .carousel-inner .active.left { left: -100%; }
-           .carousel-inner .next        { left:  100%; }
-           .carousel-inner .prev		 { left: -100%; }
-           .active > div { display:none; }
-           .active > div:first-child { display:block; }
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        font-family: 'Indie Flower', cursive;
+    }
 
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+      border-radius: 25px;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+    }
+
+    button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+
+    select {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+
+    table, td, th {
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        padding: 15px;
+    }
+
+    .jumbotron, .PT_asdf{
+       height:450px;
+       width:100%;
+       background-color:#F9CF88;
+    }
+</style>
+{% endblock %}
+
+
+{% block body %}
+<div class="row">
+  <br>
+  <div class="col-md-6 col-sm-6">
+    <div class="col-md-1 col-sm-1">
+      <!--Empty div-->
+    </div>
+    <div class="col-md-10 col-sm-10">
+      <div class="jumbotron" onclick="">
+        <center>
+          <h3>Get your document Translated</h3><br>
+          <div class="row">
+            <div class="col-md-5 col-sm-5">
+              <h5>Translate into:</h5>
+              <select class="lang" id="choosetoLanguage">
+                <option value="Tamil">தமிழ</option>
+                <option value="Hindi">हिंदी</option>
+                <option value="Sanskrit">संस्कृतम्</option>
+                <option value="Bangla">বাংলা</option>
+                <option value="Odia">ଓଡ଼ିଆ</option>
+                <option value="Punjabi">ਪੰਜਾਬੀ</option>
+                <option value="English">English</option>
+              </select>
+            </div>
+            <div class="col-md-2 col-sm-2">
+              <!--Empty div-->
+            </div>
+            <div class="col-md-5 col-sm-5">
+              <h5>File language:</h5>
+              <select class="lang" id="choosefromLanguage">
+                <option value="Tamil">தமிழ</option>
+                <option value="Hindi">हिंदी</option>
+                <option value="Sanskrit">संस्कृतम्</option>
+                <option value="Bangla">বাংলা</option>
+                <option value="Odia">ଓଡ଼ିଆ</option>
+                <option value="Punjabi">ਪੰਜਾਬੀ</option>
+                <option value="English">English</option>
+              </select>
+            </div>
+          </div>
+          <br><br><br>
+
+          <div class="row">
+            <input type="file" id="files" name="file" /><br><br>
+            <span class="readBytesButtons">
+              <button id="STS" type="submit" style="">Show translation status</button>
+            </span>
+            <!--<div id="byte_range"></div>-->
+            <br><br>
+            <div id="byte_content"></div><br>
+          </div>
+        </center>
+      </div>
+    </div>
+    <div class="col-md-1 col-sm-1">
+      <!--Empty div-->
+    </div>
+  </div>
+  <div class="col-md-6 col-sm-6">
+    <div class="col-md-1 col-sm-1">
+      <!--Empty div-->
+    </div>
+    <div class="col-md-10 col-sm-10">
+      <div class="jumbotron PT_asdf">
+        <br>
+        <center>
+          <h3>Translate a Phrase</h3>
+          You are comfortable with
+          <br><br>
+          <div class="row">
+            <div class="col-md-5 col-sm-5">
+              <h5>Language 1:</h5>
+              <select class="lang" id="lang1">
+                <option value="Tamil">தமிழ</option>
+                <option value="Hindi">हिंदी</option>
+                <option value="Sanskrit">संस्कृतम्</option>
+                <option value="Bangla">বাংলা</option>
+                <option value="Odia">ଓଡ଼ିଆ</option>
+                <option value="Punjabi">ਪੰਜਾਬੀ</option>
+                <option value="English">English</option>
+              </select>
+            </div>
+            <div class="col-md-2 col-sm-2">
+              <!--Empty div-->
+            </div>
+            <div class="col-md-5 col-sm-5">
+              <h5>Language 2:</h5>
+              <select class="lang" id="lang2">
+                <option value="Tamil">தமிழ</option>
+                <option value="Hindi">हिंदी</option>
+                <option value="Sanskrit">संस्कृतम्</option>
+                <option value="Bangla">বাংলা</option>
+                <option value="Odia">ଓଡ଼ିଆ</option>
+                <option value="Punjabi">ਪੰਜਾਬੀ</option>
+                <option value="English">English</option>
+              </select>
+            </div>
+          </div>
+          <br><br><hr><br>
+          <div class="row">
+            <span class="readBytesButtons">
+              <button id="TP" type="submit" onclick="translatePhrase()">Go!</button>
+            </span>
+          </div>
+        </center>
+      </div>
+    </div>
+    <div class="col-md-1 col-sm-1">
+      <!--Empty div-->
+    </div>
+  </div>
+</div>
+<br><hr><br>
+<div class="row">
+  <center>
+    <div class="displayFileTStatus">
+      <table>
+        <tr>
+          <th id="FNheader"></th>
+          <th id="FCheader"></th>
+          <th id="TLheader"></th>
+          <th id="TSheader"></th>
+        </tr>
+        <tr>
+          <td id="fname"></td>
+          <td id="fContent"></td>
+          <td id="language"></td>
+          <td id="tstatus"></td>
+        </tr>
+      </table>
+
+      <div id="animal-info"></div>
+
+    </div>
+  </center>
+</div>
+
+
+<script>
+
+//Code for selecting files
+  function readBlob(opt_startByte, opt_stopByte) {
+
+    fileContent = '';
+
+    var files = document.getElementById('files').files;
+    if (!files.length) {
+      alert('Please select a file!');
+      return;
+    }
+
+    var file = files[0];
+    var start = parseInt(opt_startByte) || 0;
+    var stop = parseInt(opt_stopByte) || file.size - 1;
+
+    var reader = new FileReader();
+
+    // If we use onloadend, we need to check the readyState.
+    reader.onloadend = function(evt) {
+      if (evt.target.readyState == FileReader.DONE) { // DONE == 2
+        var fileName = document.getElementById("files").value;
+        var fileContent = evt.target.result;
+        //var fileContentString = JSON.stringify(fileContent);
+        var sentences = fileContent.replace(/([.?!])\s*(?=[A-Z])/g, "$1|").split("|");
+
+        var e = document.getElementById("choosetoLanguage");
+        var tolang = e.options[e.selectedIndex].value;
+        var f = document.getElementById("choosefromLanguage");
+        var fromlang = f.options[f.selectedIndex].value;
+
+        fileData = {Name:fileName,Content:fileContent,sentences:sentences,toLanguage:tolang,fromLanguage:fromlang};
+        fileDataVar ="{Name:"+fileData.Name+",Content:"+fileData.Content+",sentences:"+fileData.sentences+",toLanguage:"+fileData.toLanguage+",fromLanguage:"+fileData.fromLanguage+"}";
+        document.getElementById('fContent').textContent = fileContent;
+        document.getElementById('fname').textContent = fileData["Name"];
+        document.getElementById('language').textContent = fileData["toLanguage"];
+        document.getElementById('FNheader').textContent = "Name";
+        document.getElementById('TLheader').textContent = "Translation language";
+        document.getElementById('FCheader').textContent = "File Content";
+        document.getElementById('TSheader').textContent = "Translation Status";
+
+        $.ajax({
+          data : {
+            name: String(fileName),
+            content:String(fileContent),
+            sentences: String(sentences),
+            tolanguage:String(tolang),
+            fromlanguage:String(fromlang)
+          },
+          type : 'POST',
+          url : '/storeFileDetails'
+        })
+        .done(function(data) {
+
+          if (data.error) {
+            $('#animal-info').text(data.error);
           }
-          @media (min-width: 767px) and (max-width: 992px ) {
-           .carousel-inner .active.left { left: -50%; }
-           .carousel-inner .next        { left:  50%; }
-           .carousel-inner .prev		 { left: -50%; }
-           .active > div { display:none; }
-           .active > div:first-child { display:block; }
-           .active > div:first-child + div { display:block; }
+          else {
+            $('#animal-info').text(data.result+" "+data.sentences);
           }
-          @media (min-width: 992px ) {
-           .carousel-inner .active.left { left: -25%; }
-           .carousel-inner .next        { left:  25%; }
-           .carousel-inner .prev		 { left: -25%; }
-          }
+        });
+      }
+    };
 
-        </style>
-        </head>
-        <body>
-          <div class="col-md-12 text-center"><h3>Product Carousel</h3></div>
-   <div class="col-md-6 col-md-offset-3">
-   <div class="carousel slide" data-ride="carousel" data-type="multi" data-interval="3000" id="myCarousel">
-     <div class="carousel-inner">
-       <div class="item active">
-         <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=1" class="img-responsive"></a></div>
-       </div>
-       <div class="item">
-         <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/e477e4/fff&amp;text=2" class="img-responsive"></a></div>
-       </div>
-       <div class="item">
-         <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/eeeeee&amp;text=3" class="img-responsive"></a></div>
-       </div>
-       <div class="item">
-         <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/f4f4f4&amp;text=4" class="img-responsive"></a></div>
-       </div>
-       <div class="item">
-         <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/f566f5/333&amp;text=5" class="img-responsive"></a></div>
-       </div>
-       <div class="item">
-         <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/f477f4/fff&amp;text=6" class="img-responsive"></a></div>
-       </div>
-       <div class="item">
-         <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/eeeeee&amp;text=7" class="img-responsive"></a></div>
-       </div>
-       <div class="item">
-         <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/fcfcfc/333&amp;text=8" class="img-responsive"></a></div>
-       </div>
-     </div>
-     <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-     <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
-   </div>
-   </div>
+    var blob = file.slice(start, stop + 1);
+    reader.readAsBinaryString(blob);
+  }
 
-</body>
-</html>
+
+
+  document.querySelector('.readBytesButtons').addEventListener('click', function(evt) {
+    if (evt.target.tagName.toLowerCase() == 'button') {
+      var startByte = evt.target.getAttribute('data-startbyte');
+      var endByte = evt.target.getAttribute('data-endbyte');
+      readBlob(startByte, endByte);
+    }
+  }, false);
+
+  function splitIntoSentences(){
+    var sentences = fileContent.replace(/([.?!])\s*(?=[A-Z])/g, "$1|").split("|");
+    document.getElementById("demo").textContent = sentences;
+  }
+
+    //Calls translatePhrase class in flask and redirects to translate phrase page
+    function translatePhrase(){
+      alert("asdf");
+      var e = document.getElementById("lang1");
+      var lang1 = e.options[e.selectedIndex].value;
+      var f = document.getElementById("lang2");
+      var lang2 = f.options[f.selectedIndex].value;
+
+      //Ajax call starts to pass on the above variables to translatePhrase function and then will redirect to translatePhrase page
+      $.ajax({
+        data : {
+          language1: String(lang1),
+          language2: String(lang2)
+        },
+        type : 'POST',
+        url : '/translatePhrase'
+      })
+      .done(function(data) {
+
+        if (data.error) {
+          $('#animal-info').text(data.error);
+        }
+        else {
+          alert("asdf");
+          $('#animal-info').text(data.result+"\n"+data.sentences);
+        }
+      });
+    }
+
+
+</script>
+
+
+{% endblock %}
+
+{% block footer%}
+<br><hr>
+<footer>
+    <p class="text-center">Copyright &copy IndoLingo</p>
+</footer>
+{%endblock%}

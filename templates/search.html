@@ -360,6 +360,38 @@ Search
       color: #ffffff;
     }
 
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            border-radius: 25px;
+            min-width: 130px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-family: 'Indie Flower', cursive;
+        }
+
+        .dropdown-content a:hover {
+          background-color: #f1f1f1;
+          border-radius: 25px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+
   </style>
 {% endblock %}
 
@@ -489,7 +521,7 @@ Search
   		$.ajax({
   			data : {
   				word : $('#SKeyword').val(),
-          lang: "Tamil"
+          lang: "English"
           //lang : $('#lang').val()
   			},
   			type : 'POST',
@@ -540,7 +572,7 @@ Search
   		$.ajax({
   			data : {
   				word : $('#SKeyword').val(),
-          lang: "Tamil"
+          lang: "English"
           //lang : $('#lang').val()
   			},
   			type : 'POST',
@@ -604,3 +636,9 @@ Search
   </script>
 
 {% endblock %}
+
+{% block footer%}
+<footer>
+    <p class="text-center">Copyright &copy IndoLingo</p>
+</footer>
+{%endblock%}

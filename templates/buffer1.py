@@ -6,10 +6,6 @@ from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
 import bcrypt
 import sys
-from bson.json_util import dumps
-import detectlanguage
-
-detectlanguage.configuration.api_key = "381bfc6bda29d85fe561fe9e27a01112"
 
 app = Flask(__name__,static_url_path='/static')
 
@@ -76,7 +72,19 @@ def mycourses():
 
 @app.route('/flashcards')
 def flashcards():
-        return render_template('flashcards.html')
+    articles = mongo.db.users.find()
+
+    if articles:
+        return render_template('flashcards.html',articles = articles)
+    else:
+        articles = [{
+            'id':0,
+            'fname':'Sorry, no words available!',
+            'uname':'Please flag a word to be added to your flashcards. Thanks.',
+            'author':'Ramanan',
+            'create_date':'28-05-2017'
+        }]
+        return render_template('flashcards.html',articles = articles)
 
 @app.route('/search')
 def search():
@@ -100,10 +108,9 @@ def translate():
 
 @app.route('/storeFileDetails', methods=['GET','POST']) #Stores file details that is uploaded by the user
 def storeFileDetails():
-        data = {"Name":request.form['name'].encode('utf-8'), "Content": request.form['content'].encode('utf-8'), "Sentences":request.form['sentences'].encode('utf-8'), "toLanguage":request.form['tolanguage'].encode('utf-8'),
-        "fileLanguage":request.form['fromlanguage'].encode('utf-8')}
+        data = {"Name":request.form['name'].encode('utf-8'), "Content": request.form['content'].encode('utf-8'), "Sentences":request.form['sentences'].encode('utf-8'), "toLanguage":request.form['tolang'].encode('utf-8'),
+        "fileLanguage":reques.form['fromlang'].encode('utf-8')}
 
-        file_language = detectlanguage.simple_detect(data["Content"])
         file_name = data["Name"].split("\\")
         file_sentences = data["Sentences"].split(",")
         #data["content"] = request.form['content'].encode('utf-8');
@@ -111,15 +118,30 @@ def storeFileDetails():
         #data["language"] = request.form['language'].encode('utf-8');
         #separated_data = data.split('!@#$%,')
         #dataNew = {separated_data[0].split(":")}
-        translate = mongo.db.translation
+        '''translate = mongo.db.translation
 
-        existing_file = translate.find_one({"fname":file_name[-1],"user":session["username"],"transtolang":data["toLanguage"],"filelang":file_language})
+        existing_file = translate.find_one({
+                            "fname":file_name,
+                            "user":session["username"],
+                            "transtolang":data["toLanguage"],
+                            "filelang":data["fileLanguage"]
+                        })
 
-        translate.insert({'fname':file_name[-1],'fcontent':data["Content"],'sentences':file_sentences,'transtolang':data["toLanguage"],'filelang':file_language,'tProgress':"In Progress",'user':session["username"]})
-        if existing_file is None:
-            return jsonify({'result':"File uploaded.",'sentences':"Thank you!"})
-        return jsonify({'result':"You have already uploaded "+file_name[-1],'sentences':"to be translated into "+data["toLanguage"]+". Please change the file name or language of translation. Thank you!"})
-
+        if existing_file:
+            return jsonify({'result':"Please try using a different file name. You have already made a similar request."})
+        else:
+            translate.insert({
+                "fname":file_name[-1],
+                "fcontent":data["Content"],
+                "sentences":file_sfile_sentences,
+                "transtolang":data["toLanguage"],
+                "filelang":data["fileLanguage"],
+                "tProgress":0
+            })'''
+        #entry_exits = translate.find_one({"FName":data[0],"Tlanguage":data[3]})
+        if data:
+            return jsonify({'result':file_name[-1], "sentences":file_sentences[2]})
+        return jsonify({'error':'Sorry, we are yet to add this word to our database. Please come back later'})
 
 @app.route('/addFlashcard', methods=['POST'])
 def addFlashcard():
@@ -144,15 +166,10 @@ def lesson1():
 
 @app.route('/translatePhrase')
 def translatePhrase():
-    return render_template('translatePhrase.html')
+    language = {"Language1":request.form["lang1"].encode("utf-8"), "language2":request.form["lang2"].encode("utf-8")}
 
-@app.route('/flashcardwords', methods=['POST'])
-def flashcardwords():
-    articles = mongo.db.search
-    articles_exist = dumps(articles.find({'flashcardFlag':1},{'word':1,'meaning':1}))
-    if articles_exist:
-        return jsonify({'words':articles_exist})
-    return jsonify({'error':"Sorry, there are no flagged articles"})
+
+    return render_template('translatePhrase.html')
 
 @app.route('/logout')
 def logout():

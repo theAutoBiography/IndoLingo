@@ -6,10 +6,11 @@ Profile
 
 {% block head %}
 
+
     <style>
     body{
         margin-top: 100px;
-        background: #FFFFFF;
+        background: #D9D8D8;
         font-family: 'Titillium Web', sans-serif;
     }
 
@@ -145,28 +146,232 @@ Profile
 
     }
 
+    .loginHomeDetails{
+      border-radius: 25px;
+      background: #FEFEFE;
+      border: 2px solid #FEFEFE;
+      padding: 20px;
+      width: 100%;
+      height: 100%;
+    }
+
+    .imageAdjust{
+      background-size: 95px;
+      height: 85px;
+      width: 75px;
+    }
+
+    .textAdjust{
+      display: inline-block;
+      padding: 10px;
+      vertical-align: middle;
+      width: 215px;
+      background-color: #FEE192;
+      border-radius: 25px;
+    }
+
+    .rightofslice{
+      color: #999;
+      float: right;
+      width: 100px;
+    }
+
+    .daystreaknumber{
+      color: #faa919;
+      font-size: 40px;
+      margin: 20px 185px 12px;
+    }
+
+/*    .dropbtn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+*/
+    /*.dropdown {
+        position: relative;
+        display: inline-block;
+    }*/
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        border-radius: 25px;
+        min-width: 130px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        font-family: 'Indie Flower', cursive;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+      border-radius: 25px;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+    }
+
     </style>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/circle.css')}}">
 {% endblock %}
 
 {% block body %}
 <section class="showcase">
   <div class="container">
-    <div class="col-md-6 col-sm-6">
-      <div class="jumbotron">
-        <h1>This space is to list down the lessons. Wait for more details.</h1>
+    <div class="col-md-8 col-sm-8">
+      <div class="loginHomeDetails" style="height:100%">
+        <div class="topic">
+          <h3>Tamil skills</h3> <!---Lesson name should get populated here-->
+          <span>Level 3</span><!--lesson level should get populated here-->
+        </div>
+        <br><hr><br>
+        <div id="lessonlinks">
+          <div class="row">
+            <div id="lesson1">
+              <center>
+                <a href="/lesson1"><span class="glyphicon glyphicon-education" style="font-size:100px;"></a>
+                <a href="/lesson1" style="color:black"><span><h4>Basics 1</h4></span></a>
+              </center>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div id="lesson2" class="col-md-6 col-sm-6">
+              <center>
+                <a href="/lesson2"><span class="glyphicon glyphicon-education" style="font-size:100px;"></a>
+                <a href="/lesson2" style="color:black"><span><h4>Basics 2</h4></span></a>
+              </center>
+            </div>
+
+            <div id="lesson3" class="col-md-6 col-sm-6">
+              <center>
+                <a href="/lesson3"><span class="glyphicon glyphicon-education" style="font-size:100px;"></a>
+                <a href="/lesson3" style="color:black"><span><h4>Phrases</h4></span></a>
+              </center>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div id="lesson4" class="col-md-6 col-sm-6">
+              <center>
+                <a href="/lesson4"><span class="glyphicon glyphicon-education" style="font-size:100px;"></a>
+                <a href="/lesson4" style="color:black"><span><h4>Food</h4></span></a>
+              </center>
+            </div>
+            <div id="lesson5" class="col-md-6 col-sm-6">
+              <center>
+                <a href="/lesson5"><span class="glyphicon glyphicon-education" style="font-size:100px;"></a>
+                <a href="/lesson5" style="color:black"><span><h4>Animals</h4></span></a>
+              </center>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div id="lesson6" >
+              <center>
+                <a href="/lesson6"><span class="glyphicon glyphicon-education" style="font-size:100px;"></a>
+                <a href="/lesson6" style="color:black"><span><h4>Adjectives 1</h4></span></a>
+              </center>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div id="lesson7">
+              <center>
+                <a href="/lesson7"><span class="glyphicon glyphicon-education" style="font-size:100px;"></a>
+                <a href="/lesson7" style="color:black"><span><h4>Plurals</h4></span></a>
+              </center>
+            </div>
+          </div>
+          <br>
+          <div class="row" id="test1">
+            <center>
+              <a href="/test"><button id="test1" type="button" name="button" style="border-color:#FEBC05; background-color:#FEBC05; border-radius:25px; width:200px; height:40px;color:black;text-align:center"><strong>Test out of 5 skills</strong></button></a>
+            </center>
+          </div>
+          <br>
+          <div class="row">
+            <div id="lesson8">
+              <center>
+                <a href="/lesson8"><span class="glyphicon glyphicon-education" style="font-size:100px;"></a>
+                <a href="/lesson8" style="color:black"><span><h4>Posessio</h4></span></a>
+              </center>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div id="lesson9" class="col-md-6 col-sm-6">
+              <center>
+                <a href="/lesson9"><span class="glyphicon glyphicon-education" style="font-size:100px;"></a>
+                <a href="/lesson9" style="color:black"><span><h4>Clothing</h4></span></a>
+              </center>
+            </div>
+            <div id="lesson10" class="col-md-6 col-sm-6">
+              <center>
+                <a href="/lesson10"><span class="glyphicon glyphicon-education" style="font-size:100px;"></a>
+                <a href="/lesson10" style="color:black"><span><h4>Colors</h4></span></a>
+              </center>
+            </div>
+          </div>
+          <br>
+        </div>
       </div>
     </div>
-    <div class="col-md-6 col-sm-6">
-      <div class="row">
-        <h2>This space is to how the daily progress</h2>
+    <div class="col-md-4 col-sm-4">
+      <div class="row loginHomeDetails" style="">
+        <h3>Daily goal</h3>
+        <div class="_LogoAText">
+          <span ><img class="imageAdjust" src="{{url_for('static', filename='tlci.png')}}" alt="logo"></span>
+          <span class="textAdjust">Learning a language requires practice everyday.</span>
+        </div>
+        <hr>
+        <div class="c100 p25 green">
+          <span>25%</span>
+          <div class="slice">
+            <div class="bar"></div>
+            <div class="fill"></div>
+          </div>
+
+          <div class="rightofslice">
+            <div class="daystreaknumber">0</div>
+            <p style="margin: 0 165px 0; width:100px">day streak</p>
+          </div>
+        </div>
       </div>
-      <div class="row">
-        <h2>This space is to challenge your friends</h2>
+      <br>
+      <div class="row loginHomeDetails">
+        <h5>Leaderboard</h5>
       </div>
-      <div class="row">
-        <h2>This space is for duolingo advertisement</h2>
+      <br>
+      <div class="row loginHomeDetails">
+        <h5 style="text-align:center">Follow IndoLingo</h5>
       </div>
     </div>
   </div>
 </section>
+
 {% endblock %}
+
+{% block footer%}
+<br><hr><br>
+<footer>
+    <p class="text-center">Copyright &copy IndoLingo</p>
+</footer>
+{%endblock%}

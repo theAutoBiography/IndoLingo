@@ -1,0 +1,376 @@
+{% extends 'layoutAfterLogin.html' %}
+
+{% block title %}
+Search
+{% endblock %}
+
+
+{% block head %}
+  <style>
+    body, html, .container-fluid {
+             height: 100%;
+    }
+
+    .Tiles {
+        border-radius: 15px;
+        border: 2px solid #73AD21;
+        padding: 5px;
+        shadow: 2px 2px;
+        justify-content: center;
+        height: 200px;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    #clickForMeaning .button {
+        background-color: #e7e7e7; color: black; /*Grey*/
+        border-radius: 15px;
+        border: none;
+        color: darkgrey;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        width: 94%;
+    }
+
+    .DoNotdisplayText{
+        display: none;
+    }
+
+    .goToCenterLeft{
+      margin-left: 50%;
+      margin-top: 60px;
+      height: 40rem;
+      align-items: center;
+      font-size: 50px;
+    }
+
+    .goToCenterRight{
+      margin-right: 50%;
+      margin-top: 60px;
+      height: 40rem;
+      align-items: center;
+      font-size: 50px;
+    }
+
+    .TilesFlashCardsWords{
+      width: 100%;
+      font-family: 'Poppins', sans-serif;
+      font-size: 40px;
+    }
+
+    #FlashcardWord{
+      height: 50px;
+    }
+
+    /*#clickForMeaning{
+      height: 50px;
+    }*/
+
+    .progress-bar-purple {
+          background-color: purple !important;
+    }
+    .progress-bar-green {
+          background-color: green !important;
+    }
+
+    nav a{
+      color: white;
+    }
+
+    #showcase .card-block{
+
+        width: 100%;
+        margin-left: 60px;
+    }
+
+    .navbar{
+      background-color: #00BFFF;
+    }
+
+    .choose {
+      display: inline-block;
+      text-align: center;
+    }
+
+    .choose label {
+      display: block;
+    }
+
+
+    .box{
+      padding: 0 10px 0 10px;
+    }
+
+    .box-item{
+      padding: 10px 10px 10px 10px;
+    }
+
+    .completion p{
+      text-align: center;
+    }
+
+    .completion button{
+        background-color: yellow;
+    }
+
+    .completion img{
+        width: 50%;
+        margin-left: 60px;
+    }
+
+    .completion span{
+        color: black;
+    }
+
+    .border{
+        border-radius: 25px;
+        border: 2px solid #73AD21;
+        padding: 20px;
+    }
+
+    /*.lesson {
+      display:table;
+      content:"";
+      line-height:0
+    }
+
+    .list-lessons-row {
+      display:table-row
+    }
+
+    .list-lesson-item {
+      display:table-cell;
+      width:33.333%;
+      min-width:160px
+    }
+    */
+
+
+    body{
+        margin-top: 100px;
+        background: #FFFFFF;
+        font-family: 'Titillium Web', sans-serif;
+    }
+
+    h2,h3,h4,h5,h6{
+            font-family: Poppins;
+    }
+
+    h1{
+      font-family: 'Indie Flower', cursive;
+    }
+
+    p{
+        font-family: Roboto;
+        font-size: 16px;
+    }
+
+    /*.navbar-default{
+        background: #fff;
+        border:0;
+        font-family: 'Poppins', sans-serif;
+
+    }
+
+    .navbar-brand{
+        font-size: 20px;
+        color: #000 !important;
+        font-weight: bold;
+    }*/
+
+    .navbar{
+      background-color: #00BFFF;
+    }
+
+    a {
+      text-decoration: none;
+      color: #00BFFF;
+      -webkit-transition: .5s ease;
+      transition: .5s ease;
+      font-family: 'Indie Flower', cursive;
+    }
+
+    a:hover {
+      color: 	#4169E1;
+    }
+
+    #showcase .list-lesson p {
+      height:80px;
+      overflow:hidden;
+      color:#999;
+      text-overflow:ellipsis;
+      margin-bottom:10px
+    }
+
+
+
+    #showcase .list-lesson-item.past .inner {
+      -webkit-box-shadow:0 0 10px rgba(0,0,0,0.15);
+      -moz-box-shadow:0 0 10px rgba(0,0,0,0.15);
+      box-shadow:0 0 10px rgba(0,0,0,0.15)
+    }
+
+    #showcase .list-lesson-item .inner {
+      -webkit-border-radius:10px;
+      -moz-border-radius:10px;
+      border-radius:10px;
+      margin:15px;
+      padding:20px
+    }
+
+    #showcase h1{
+        font-size: 50px;
+        margin-bottom: 30px;
+
+    }
+
+    #showcase img{
+
+        width: 80%;
+        margin-left: 60px;
+    }
+
+    #showcase .showcase-right{
+        margin-top: 90px;
+    }
+
+    #testimonial{
+        background: #f1f1f1;
+        padding: 50px 0 30px 0;
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    #testimonial p{
+        font-size: 32px;
+        font-family: 'Josefin-sans';
+        color: #000;
+    }
+
+    #testimonial p.customer{
+        font-size: 20px;
+        color: #666;
+    }
+
+    #about1 {
+            margin-top: 90px;
+    }
+
+
+    #about1 img{
+            width: 50%;
+            margin-left: 60px;
+    }
+
+    #about2 {
+            margin: 20px 0 60px 0;
+    }
+
+    #contact{
+        /*background: url(../img/contact.png);*/
+        padding: 30px;
+        color: #000;
+        border-top: #333 7px solid;
+        border-bottom: #333 7px solid;
+    }
+
+    footer{
+        padding: 30px;
+    }
+
+    #lesson-showcase img{
+      width: 50%;
+      margin-left: 60px;
+
+    }
+
+    #SButton{
+      text-align: center;
+      width: 10%;
+      height: 45px;
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 16px;
+      font-size: 90%;
+      background-color: white;
+      background-position: 10px 10px;
+      background-repeat: no-repeat;
+      padding-top: 0.3%;
+    }
+
+    input span{
+      text-align: center;
+      font-size: 15px;
+    }
+
+    input[type=text] {
+        width: 85%;
+        height: 50px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-image: url('searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+        /*-webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;*/
+    }
+
+    /*input[type=text]:focus {
+        width: 90%;
+    }*/
+
+    .tab-group {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 40px 0;
+    }
+    .tab-group:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    /*.tab-group li a {
+      display: block;
+      text-decoration: none;
+      padding: 15px;
+      background: rgba(160, 179, 176, 0.25);
+      color: #a0b3b0;
+      font-size: 20px;
+      float: left;
+      width: 50%;
+      text-align: center;
+      cursor: pointer;
+      -webkit-transition: .5s ease;
+      transition: .5s ease;
+    }*/
+
+    .tab-group li a:hover {
+      background: 	#4169E1;
+      color: #ffffff;
+    }
+    .tab-group .active a {
+      background: #00BFFF;
+      color: #ffffff;
+    }
+
+  </style>
+{% endblock %}
+
+
+{% block body %}
+
+{% endblock %}
+
+{% block footer%}
+<br><hr><br>
+<footer>
+    <p class="text-center">Copyright &copy IndoLingo</p>
+</footer>
+{%endblock%}

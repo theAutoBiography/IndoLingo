@@ -281,6 +281,16 @@ Login/SignUp
         </div>
 
       </div><!-- tab-content -->
+      <br><hr><br>
+      <div class="status">
+        <center><button type="submit" name="button" onclick="login()" style="border-radius:25px;          border: 0;
+                  outline: none;
+                  border-radius: 25px;
+                  padding: 10px 10px 10px 10px;
+                  background: #00BFFF;
+                  color: #ffffff;">Login with facebook</button></center>
+
+      </div>
 
     </div> <!-- /form -->
 
@@ -340,4 +350,57 @@ Login/SignUp
 
     </script>
 
+    <script>
+
+    //The below code initializes and sets up facebook JS sdk
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId            : '2047697108791346',
+          autoLogAppEvents : true,
+          xfbml            : true,
+          version          : 'v2.9'
+        });
+        FB.AppEvents.logPageView();
+        FB.getLoginStatus(function(response){
+          if(response.status === 'connected'){
+            document.getElementById('status').innerHTML = 'We are connected';
+          }
+          else if (response.status === 'not_authorized'){
+            document.getElementById('status').innerHTML = 'We are not logged in';
+          }
+          else {
+            document.getElementById('status').innerHTML = 'You are not logged into facebook';
+          }
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+
+       function login(){
+         FB.login(function(response){
+           if(response.status === 'connected'){
+             window.location.replace('/loginhome');
+           }
+           else if (response.status === 'not_authorized'){
+             window.location.replace('/login');
+           }
+           else {
+             window.location.replace('/login');
+           }
+         });
+       }
+    </script>
+
 {% endblock %}
+
+{% block footer%}
+<footer>
+    <p class="text-center">Copyright &copy IndoLingo</p>
+</footer>
+{%endblock%}

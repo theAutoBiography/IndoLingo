@@ -1,0 +1,102 @@
+{% extends 'layoutAfterLogin.html' %}
+
+{% block title %}
+Translate Phrase
+{% endblock %}
+
+
+{% block head %}
+<style media="screen">
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        border-radius: 25px;
+        min-width: 130px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        font-family: 'Indie Flower', cursive;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+      border-radius: 25px;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+    }
+</style>
+{% endblock %}
+
+
+{% block body %}
+<div class="row">
+  <center>
+    <h3>Welcome to Translate a Phrase</h3>
+    <p>Earn stars by helping out your friends!</p>
+  </center>
+</div>
+<div class="row">
+  <br>
+  <div class="col-md-8 col-sm-8">
+    <div class="col-md-1 col-sm-1">
+
+    </div>
+    <div class="col-md-10 col-sm-0">
+      <div class="jumbotron" style="height:400px; width:100%">
+        <a onclick="getUrlVars()">Click Here</a>
+      </div>
+    </div>
+    <div class="col-md-1 col-sm-1">
+    </div>
+  </div>
+  <div class="col-md-4 col-sm-4">
+    <div class="col-md-11 col-sm-11">
+      <div class="jumbotron" style="height:400px; width:100%">
+      </div>
+    </div>
+    <div class="col-md-1 col-sm-1">
+
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  function getUrlVars()
+  {
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    alert(vars.language1);
+  }
+
+
+
+</script>
+{% endblock %}
+
+{% block footer%}
+<br><hr>
+<footer>
+    <p class="text-center">Copyright &copy IndoLingo</p>
+</footer>
+{%endblock%}

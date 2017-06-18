@@ -6,10 +6,330 @@ Translate
 
 
 {% block head %}
+<style>
 
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        border-radius: 25px;
+        min-width: 130px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        font-family: 'Indie Flower', cursive;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+      border-radius: 25px;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+    }
+
+    button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+
+    select {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+
+    table, td, th {
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        padding: 15px;
+    }
+
+    .jumbotron, .PT_asdf{
+       height:450px;
+       width:100%;
+       background-color:#F9CF88;
+    }
+</style>
 {% endblock %}
 
 
 {% block body %}
+<div class="row">
+  <br>
+  <div class="col-md-6 col-sm-6">
+    <div class="col-md-1 col-sm-1">
+      <!--Empty div-->
+    </div>
+    <div class="col-md-10 col-sm-10">
+      <div class="jumbotron" onclick="">
+        <center>
+          <h3>Get your document Translated</h3><br>
+          <div class="row">
+            <div class="col-md-5 col-sm-5">
+              <h5>Translate into:</h5>
+              <select class="lang" id="choosetoLanguage">
+                <option value="Tamil">தமிழ</option>
+                <option value="Hindi">हिंदी</option>
+                <option value="Sanskrit">संस्कृतम्</option>
+                <option value="Bangla">বাংলা</option>
+                <option value="Odia">ଓଡ଼ିଆ</option>
+                <option value="Punjabi">ਪੰਜਾਬੀ</option>
+                <option value="English">English</option>
+              </select>
+            </div>
+            <div class="col-md-2 col-sm-2">
+              <!--Empty div-->
+            </div>
+            <div class="col-md-5 col-sm-5">
+              <h5>File language:</h5>
+              <select class="lang" id="choosefromLanguage">
+                <option value="Tamil">தமிழ</option>
+                <option value="Hindi">हिंदी</option>
+                <option value="Sanskrit">संस्कृतम्</option>
+                <option value="Bangla">বাংলা</option>
+                <option value="Odia">ଓଡ଼ିଆ</option>
+                <option value="Punjabi">ਪੰਜਾਬੀ</option>
+                <option value="English">English</option>
+              </select>
+            </div>
+          </div>
+          <br><br><br>
+
+          <div class="row">
+            <input type="file" id="files" name="file" /><br><br>
+            <span class="readBytesButtons">
+              <button id="STS" type="submit" style="">Show translation status</button>
+            </span>
+            <!--<div id="byte_range"></div>-->
+            <br><br>
+            <div id="byte_content"></div><br>
+          </div>
+        </center>
+      </div>
+    </div>
+    <div class="col-md-1 col-sm-1">
+      <!--Empty div-->
+    </div>
+  </div>
+  <div class="col-md-6 col-sm-6">
+    <div class="col-md-1 col-sm-1">
+      <!--Empty div-->
+    </div>
+    <div class="col-md-10 col-sm-10">
+      <div class="jumbotron PT_asdf">
+        <br>
+        <center>
+          <h3>Translate a Phrase</h3>
+          You are comfortable with
+          <br><br>
+          <div class="row">
+            <div class="col-md-5 col-sm-5">
+              <h5>Language 1:</h5>
+              <select class="lang" id="lang1">
+                <option value="Tamil">தமிழ</option>
+                <option value="Hindi">हिंदी</option>
+                <option value="Sanskrit">संस्कृतम्</option>
+                <option value="Bangla">বাংলা</option>
+                <option value="Odia">ଓଡ଼ିଆ</option>
+                <option value="Punjabi">ਪੰਜਾਬੀ</option>
+                <option value="English">English</option>
+              </select>
+            </div>
+            <div class="col-md-2 col-sm-2">
+              <!--Empty div-->
+            </div>
+            <div class="col-md-5 col-sm-5">
+              <h5>Language 2:</h5>
+              <select class="lang" id="lang2">
+                <option value="Tamil">தமிழ</option>
+                <option value="Hindi">हिंदी</option>
+                <option value="Sanskrit">संस्कृतम्</option>
+                <option value="Bangla">বাংলা</option>
+                <option value="Odia">ଓଡ଼ିଆ</option>
+                <option value="Punjabi">ਪੰਜਾਬੀ</option>
+                <option value="English">English</option>
+              </select>
+            </div>
+          </div>
+          <br><br><hr><br>
+          <div class="row">
+            <span class="readBytesButtons">
+              <button id="TP" type="button">Go!</button>
+            </span>
+          </div>
+        </center>
+      </div>
+    </div>
+    <div class="col-md-1 col-sm-1">
+      <!--Empty div-->
+    </div>
+  </div>
+</div>
+<br><hr><br>
+<div class="row">
+  <center>
+    <div class="displayFileTStatus">
+      <table>
+        <tr>
+          <th id="FNheader"></th>
+          <th id="FCheader"></th>
+          <th id="TLheader"></th>
+          <th id="TSheader"></th>
+        </tr>
+        <tr>
+          <td id="fname"></td>
+          <td id="fContent"></td>
+          <td id="language"></td>
+          <td id="tstatus"></td>
+        </tr>
+      </table>
+
+      <div id="animal-info"></div>
+
+    </div>
+  </center>
+</div>
+
+
+<script>
+
+  $(document).ready(function(){
+   $('#STS').on('click', function(evt){
+
+         fileContent = '';
+
+         var files = document.getElementById('files').files;
+         if (!files.length) {
+           alert('Please select a file!');
+           return;
+         }
+         else{
+           readFile(files[0], function(evt) {
+               //manipulate with result...
+               fileContent = evt.target.result;
+               var fileName = document.getElementById("files").value;
+               //var fileContent = evt.target.result;
+               //var fileContentString = JSON.stringify(fileContent);
+               var sentences = fileContent.replace(/([.?!])\s*(?=[A-Z])/g, "$1|").split("|");
+
+               var e = document.getElementById("choosetoLanguage");
+               var tolang = e.options[e.selectedIndex].value;
+               var f = document.getElementById("choosefromLanguage");
+               var fromlang = f.options[f.selectedIndex].value;
+
+               fileData = {Name:fileName,Content:fileContent,sentences:sentences,toLanguage:tolang,fromLanguage:fromlang};
+               fileDataVar ="{Name:"+fileData.Name+",Content:"+fileData.Content+",sentences:"+fileData.sentences+",toLanguage:"+fileData.toLanguage+",fromLanguage:"+fileData.fromLanguage+"}";
+               document.getElementById('fContent').textContent = fileContent;
+               document.getElementById('fname').textContent = fileData["Name"];
+               document.getElementById('language').textContent = fileData["toLanguage"];
+               document.getElementById('FNheader').textContent = "Name";
+               document.getElementById('TLheader').textContent = "Translation language";
+               document.getElementById('FCheader').textContent = "File Content";
+               document.getElementById('TSheader').textContent = "Translation Status";
+
+               $.ajax({
+                 data : {
+                   name: String(fileName),
+                   content:String(fileContent),
+                   sentences: String(sentences),
+                   tolanguage:String(tolang),
+                   fromlanguage:String(fromlang)
+                 },
+                 type : 'POST',
+                 url : '/storeFileDetails'
+               })
+               .done(function(data) {
+
+                 if (data.error) {
+                   $('#animal-info').text(data.error);
+                 }
+                 else {
+                   $('#animal-info').text(data.result+" "+data.sentences);
+                 }
+               });
+           });
+         }
+     });
+  });
+
+
+  function readFile(file, callback){
+      var reader = new FileReader();
+      reader.onload = callback
+      reader.readAsText(file);
+      alert(reader.readAsText(file));
+  }
+
+    //Calls translatePhrase class in flask and redirects to translate phrase page
+    $('#TP').on('click',function(){
+      var e = document.getElementById("lang1");
+      var lang1 = e.options[e.selectedIndex].value;
+      alert(lang1);
+      var f = document.getElementById("lang2");
+      var lang2 = f.options[f.selectedIndex].value;
+      alert(lang2);
+
+      window.location="/translatePhrase?language1="+lang1+"&language2="+lang2;
+      //Ajax call starts to pass on the above variables to translatePhrase function and then will redirect to translatePhrase page
+      /*$.ajax({
+        data : {
+          tolanguage:String(lang1),
+          fromlanguage:String(lang2)
+        },
+        type : 'POST',
+        url : '/translatePhrase'
+      });*/
+      /*.done(function(data) {
+
+        if (data.error) {
+          $('#animal-info').text(data.error);
+        }
+        else {
+          $('#animal-info').text(data.result+" "+data.sentences);
+        }
+      });*/
+    });
+
+
+</script>
+
 
 {% endblock %}
+
+{% block footer%}
+<br><hr>
+<footer>
+    <p class="text-center">Copyright &copy IndoLingo</p>
+</footer>
+{%endblock%}
