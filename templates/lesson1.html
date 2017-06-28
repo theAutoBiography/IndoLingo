@@ -227,8 +227,10 @@ Lesson 1
     }
 
     #learnings{
-      background-color: white;
       border-radius: 25px;
+      height:100%;
+      width:100%;
+      background-color:#FEE7BF;
     }
 
     #ads{
@@ -236,26 +238,196 @@ Lesson 1
       border-radius: 25px;
     }
 
+    .shrinkCardFront, .shrinkCardBack {
+      width: 100px;
+      height:50px;
+      background-color: white;
+      border-radius:25px;
+      vertical-align: middle;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .shrinkCardFront h2,.shrinkCardBack h2{
+      font-size: 20px;
+    }
+
+    button {
+        background-color: #B8860B; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        height: 100px;
+        width: 200px;
+    }
+
     </style>
 
-    <link rel="stylesheet" href="{{url_for('static', filename='css/circle.css')}}">
+    <!--<link rel="stylesheet" href="{{url_for('static', filename='css/circle.css')}}">-->
 {% endblock %}
 
 {% block body %}
 <section class="showcase">
   <div class="container">
-    <div class="col-md-8 col-sm-8" id="learnings">
-        <div class="lessonheader">
-          <span class="glyphicon glyphicon-education" style="font-size:50px;">
-          <h3>Basics 1</h3>
-          <h5>Strength: 1/5</h5>
+    <div class="col-md-12 col-sm-12" id="learnings">
+          <div class="lessonheader">
+            <center><h1 style="font-size: 50px;">Module 1: Basics</h1>
+            <h5>Learn alphabets and get familiar with simple words</h5></center><hr>
+          </div>
+
+        <!---Vowels Display Starts--->
+        <div class="row vowelsDisplay">
+          <div class="row">
+            <div>
+              <center><button data-toggle="collapse" data-target="#toggleVowels" style="display:cursor;">Hindi Vowels</button></center><br>
+            </div>
+          </div>
+          <div class="col-md-8 col-sm-8">
+            <div class="collapse" id="toggleVowels">
+              <hr>
+              <div class="row" id="letterV" style="display:none">
+                <!---->
+              </div>
+              <br><br>
+              <div class="row" id="engtranslationV">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4">
+
+          </div>
         </div>
-    </div>
-    <div class="col-md-4 col-sm-4" id="ads">
-      <center>This section would contain the advertisements.</center>
+        <!---Vowels Display ends--->
+        <!---Display consonants starts--->
+        <div class="row consonantsDisplay">
+          <div class="row">
+            <div>
+              <center><button data-toggle="collapse" data-target="#toggleConsonants" style="display:cursor;">Hindi Consonants</button></center><br>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4">
+
+          </div>
+          <div class="col-md-8 col-sm-8">
+            <div class="collapse" id="toggleConsonants">
+              <hr>
+              <div class="row" id="letterC" style="display:none">
+                <!---->
+              </div>
+              <br><br>
+              <div class="row" id="engtranslationC">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-1 col-sm-1">
+
+          </div>
+
+        </div>
+        <!---Display Consonants Ends--->
+
+        <div class="row">
+          <div class="col-md-4">
+
+          </div>
+          <div class="col-md-4">
+
+          </div>
+          <div class="col-md-4">
+            <center><button style="display:cursor; height:50px; width:100px; background-color:#BDB76B; border-radius:20px; font-size:17px" onclick="updateToDB()">Next</button></center><br>
+          </div>
+        </div>
+
     </div>
   </div>
 </section>
+<script>
+
+    function showVowelsTrans(idV,meaningV){
+      alert(meaningV);
+    }
+
+    function showConsonantTrans(idC,meaningC){
+      alert(meaningC);
+    }
+
+    window.onload = function(){
+      $.ajax({
+        type : 'POST',
+        url : '/lessonOneVowels',
+        contentType: "application/json; charset=utf-8"
+      })
+      .done(function(data1) {
+        if (data1.error) {
+          $('#letterV').text(data1.error);
+        }
+        else {
+          var obj = data1.vowels;
+          var object = JSON.parse(obj);
+          for(i=0;i<object.length;i++){
+            vowelsEng = object[i].vowelsEnglish.split("'").join("");
+            $("#letterV").show();
+            $("#letterV").append("<div class='col-md-2 col-sm-2'><div><center><div class='card' id='card-"+i+"' onclick='showVowelsTrans("+"\""+i+"\""+","+"\"" +vowelsEng+"\""+")'><div class = 'shrinkCardFront front'><h2 id='"+i+"'>" +object[i].vowelsHindi+"</h2></div></div></center></div></div>");
+
+            if((i+2)%5==1){
+                $("#letterV").append("<br><br><br><br>");
+            }//"+i+"
+          }
+        }
+      });
+
+      $.ajax({
+        type : 'POST',
+        url : '/lessonOneConsonants',
+        contentType: "application/json; charset=utf-8"
+      })
+      .done(function(data2) {
+        if (data2.error) {
+          $('#letterC').text(data2.error);
+        }
+        else {
+          var obj = data2.consonants;
+          var object = JSON.parse(obj);
+          for(i=10;i<object.length+10;i++){
+            consonantsEng = object[i].consonantsEnglish.split("'").join("");
+            $("#letterC").show();
+            $("#letterC").append("<div class='col-md-2 col-sm-2'><div><center><div class='card' id='card-"+i+"' onclick='showConsonantTrans("+"\""+i+"\""+","+"\"" +consonantsEng+"\""+")'><div class = 'shrinkCardFront front'><h2 id='"+i+"'>" +object[i].consonantsHindi+"</h2></div></div></center></div></div>");
+            if((i-8)%5==1){
+                $("#letterC").append("<br><br><br><br>");
+            }//"+i+"
+          }
+        }
+      });
+    };
+
+
+    function updateToDB(){
+      $.ajax({
+        data : JSON.stringify({
+          lname : "basics1",
+          mnum : 1,
+          lang1 : "hi",
+          lang2: "en"
+        }),
+        type : 'POST',
+        url : '/updateToDB',
+        contentType: "application/json; charset=utf-8"
+      }).done(function(data){
+        if(data.error){
+          alert(data.error);
+        }
+        else {
+          alert(data.redirectToURL);
+          window.location = data.redirectToURL;
+        }
+      });
+    }
+
+</script>
 {% endblock %}
 
 {% block footer%}

@@ -1,0 +1,242 @@
+{% extends 'layoutlesson.html'%}
+
+{% block title %}
+Lesson 1
+{% endblock %}
+
+{% block head %}
+
+    <style>
+    body{
+        margin-top: 100px;
+        background: #D9D8D8;
+        font-family: 'Titillium Web', sans-serif;
+    }
+
+    h2,h3,h4,h5,h6{
+            font-family: Poppins;
+    }
+
+    h1{
+      font-family: 'Indie Flower', cursive;
+    }
+
+    p{
+        font-family: Roboto;
+        font-size: 16px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #00BFFF;
+      -webkit-transition: .5s ease;
+      transition: .5s ease;
+      font-family: 'Indie Flower', cursive;
+    }
+
+    a:hover {
+      color: 	#4169E1;
+    }
+    footer{
+        padding: 30px;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        border-radius: 25px;
+        min-width: 130px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        font-family: 'Indie Flower', cursive;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+      border-radius: 25px;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+    }
+
+    #learnings{
+      background-color: white;
+      border-radius: 25px;
+    }
+
+    #ads{
+      background-color: white;
+      border-radius: 25px;
+    }
+
+    .shrinkCardFront, .shrinkCardBack {
+      width: 100%;
+      height:100%;
+      background-color: white;
+      border-radius:25px;
+      vertical-align: middle;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .shrinkCardFront h2,.shrinkCardBack h2{
+      font-size: 20px;
+    }
+
+    #learnings{
+       height:100%;
+       width:100%;
+       background-color:#FEE7BF;
+    }
+
+    button {
+        background-color: #B8860B; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        height: 100px;
+        width: 200px;
+    }
+
+    #learnings{
+      border-radius: 25px;
+      height:100%;
+      width:100%;
+      background-color:#FEE7BF;
+    }
+
+    #learnings .questionSpace{
+      background-color: #7479A4;
+      border-radius: 25px;
+      height: 300px;
+      width: 100%;
+      color: white;
+    }
+
+    #learnings .responseSpace{
+      background-color: #4BC07E;
+      border-radius: 25px;
+      height: 50px;
+      width: 100%;
+      color: white;
+    }
+
+    </style>
+
+{% endblock %}
+
+{% block body %}
+<section>
+  <div class="col-md-12 col-sm-12">
+    <div class="lessonheader" id="learnings">
+      <br>
+      <center>
+        <h1 style="font-size: 40px;">Module 1</h1>
+        <h2>Lesson: Basics 2</h2>
+
+        <div class="row">
+          <!--Question row starts-->
+          <div class="col-md-1 col-sm-1">
+            <!---->
+          </div>
+          <div class="col-md-10 col-sm-10">
+            <div class="questionSpace">
+              <hr><br>
+              <center>
+                <h4>Type in a question here!</h4>
+              </center>
+
+              <!--Options row starts-->
+              <div class="row">
+                <div class="col-md-1 col-sm-1">
+                  <!----->
+                </div>
+                <div class="col-md-10 col-sm-10">
+                  <div class="col-md-6 col-sm-6">
+                    <center>
+                      <div class="radio">
+                        <label><input type="radio" name="optradio">Option 1</label>
+                        <img src="" alt="" id="op1img">
+                      </div>
+                      <br><hr><br>
+                      <div class="radio">
+                        <label><input type="radio" name="optradio">Option 2</label>
+                        <img src="" alt="" id="op1img">
+                      </div>
+                    </center>
+                  </div>
+                  <div class="col-md-6 col-sm-6">
+                    <center>
+                      <div class="radio">
+                        <label><input type="radio" name="optradio">Option 3</label>
+                        <img src="" alt="" id="op1img">
+                      </div>
+                      <br><hr><br>
+                      <div class="radio">
+                        <label><input type="radio" name="optradio">Option 4</label>
+                        <img src="" alt="" id="op1img">
+                      </div>
+                    </center>
+                  </div>
+                </div>
+                <div class="col-md-1 col-sm-1">
+                  <!----->
+                </div>
+              </div>
+            </div>
+            <br><br>
+          </div>
+          <div class="col-md-1 col-sm-1">
+            <!---->
+          </div>
+        </div>
+        <!--Question row ends-->
+        <!---Answer check-->
+        <div class="row">
+          <div class="col-md-1 col-sm-1">
+
+          </div>
+          <div class="col-md-10 col-sm-10">
+            <div class="responseSpace">
+              <center>
+                <p style="vertical-align:middle; display:relative;">Evaluate</p>
+              </center>
+            </div>
+          </div>
+          <div class="col-md-1 col-sm-1">
+
+          </div>
+
+        </div>
+        <br><br>
+        <!---Answer check ends --->
+      </center>
+    </div>
+    <br><br><br><br>
+  </div>
+</section>
+{% endblock %}
+
+{% block footer%}
+<br><hr><br>
+<footer>
+  <p class="text-center">Copyright &copy IndoLingo</p>
+</footer>
+{%endblock%}
