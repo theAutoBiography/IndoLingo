@@ -1,10 +1,11 @@
-{% extends 'layoutHomePage.html' %}
+{% extends 'layoutHomePage_ta.html' %}
 
 {% block title %}
-Indolingo Home
+பாரதமொழி
 {% endblock %}
 
 {% block head %}
+    <link rel="icon" href="/static/tlci.png" type="image/gif" sizes="16x16">
 
     <style>
     body{
@@ -63,6 +64,10 @@ Indolingo Home
       margin-bottom:10px
     }
 
+    #showcase p{
+      font-size: 25px;
+    }
+
 
 
     #showcase .list-lesson-item.past .inner {
@@ -93,10 +98,6 @@ Indolingo Home
 
     #showcase .showcase-right{
         margin-top: 90px;
-    }
-
-    #showcase p{
-      font-size: 25px;
     }
 
     #testimonial{
@@ -198,12 +199,11 @@ Indolingo Home
             </div>
             <div class="col-md-6 col-sm-6">
                 <div class="showcase-right">
-                  <h1><span style="color:orange">Indo</span><span style="color:green">lingo</span></h1>
-                    <p>Learn an Indian language anytime, anywhere! With Indoligo, it's as easy as learning your mother-tongue.</p>
-
+                    <h1><span style="color:orange">பாரத</span><span style="color:green">மொழி</span></h1>
+                    <p>எங்கும், எந்த நேரத்திலும், ஒரு மொழியை கற்க வேண்டும்! வாருங்கள், ஒரு இந்திய மொழியை கற்றுக்கொள்ளலாம்.</p>
                 </div>
                 <br>
-                <a class="btn btn-default showcase-btn" style="background-color:#1ab188">Know More</a>
+                <a class="btn btn-default showcase-btn" style="background-color:#1ab188">மேலும் தெரிந்துகொள்</a>
 
             </div>
 
@@ -214,11 +214,10 @@ Indolingo Home
 
 <section id="testimonial">
     <div class="container">
-        <p>"aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+        <p>"நான் எப்போதும் ஹிந்தி கற்றுக்கொள்ள விரும்பினேன். நான் டெலிவியில் வாழ்கிறேன். என் நண்பர்கள் பலர் தமிழர்கள். தமிழ் மிகவும் இனிமையான மொழி. भरतभाषा ने जीना आसान कर दिया है अब मेरा | धन्यवाद |"</p>
         <p class="customer">Ramanan, BITSP</p>
-        <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea "</p>
+        <p>"मुझे पहली बार तमिल सीखने को मिला है | मैं तमिल नाडु में बस्ता हूँ और मुझे भाषा की बोहोत दिक्कत होती थी | भरतभाषा से तमिल बोहोत आसानी से सीख सकतें हैं और दो महीनों में सरल तमिल बोल सकतें हैं | भरतभाषा ने जीना आसान कर दिया है अब मेरा | धन्यवाद |"</p>
         <p class="customer">Easwaran, IITM</p>
-
     </div>
 
 </section>
@@ -230,19 +229,18 @@ Indolingo Home
 
             </div>
             <div class="col-md-5 col-sm-5">
-                <div class="info-left"><br><br><br>
+                <div class="info-left">
                     <img src="{{url_for('static', filename='tlci.png')}}" alt="IndoLingo-Logo">
 
                 </div>
             </div>
             <div class="col-md-5 col-sm-5">
                 <div class="info-right">
-                    <h2>About Us</h2><hr>
-                    <p style="font-size:20px;">You can learn any of the Indian languages using IndoLingo. It's as easy as learning your mother tongue. Do you already know English? <br><br><a href="#">Click Here</a> to check out the languages that you can learn now. Explore India's beauty by speaking, reading and writing the classical Indian languages.</p>
+                    <h2>हमारे बारे में जानिये </h2>
+                    <p>हम आपको भारत में सबसे अधिक बोली जाने वाली भाषाओँ को प्रस्तुत करते हैं | हमारा पाठ्यक्रम भाषा सीखना एकदम सरल बनता है | भारत की खूबसूरती महसूस करे, इसके भाषाओ को सीखे, भारत को कुशल बनाएं | और जान्ने के लिए <a href="#">इधर दबाएं</a></p>
                     <br>
-                    <a class="btn btn-default btn">Know More</a>
+                    <a class="btn btn-default btn">और जानिए</a>
                 </div>
-                <br><br>
             </div>
             <div class="col-md-1 col-sm-1">
 
@@ -256,7 +254,7 @@ Indolingo Home
 <section id="about2">
     <div class="container">
       <div class="row">
-          <center><h1 class="info-left">Soon available in...</h1></center><br><br>
+          <center><h2 class="info-left">जल्द ही में उपलब्ध...</h2></center><br><br>
       </div>
       <div class="row">
         <div class="col-md-4 col-sm-4">
@@ -280,7 +278,7 @@ Indolingo Home
             </div>
           </center>
         </div>
-      </div><br><br>
+      </div>
     </div>
 
 </section>
@@ -293,18 +291,18 @@ Indolingo Home
           </div>
             <div class="col-md-6 col-sm-6">
               <div class="row">
-                <h1>Contact Us:</h1>
+                <h1>हमसे संपर्क करें:</h1>
               </div>
                 <form>
                     <div class="form-group">
-                        <label for="email">Email address:</label>
+                        <label for="email">ईमेल आईडी:</label>
                         <input type="email" class="form-control" id="email">
                     </div>
                     <div class="form-group">
-                        <label for="pwd">Phone:</label>
+                        <label for="pwd">फ़ोन नंबर:</label>
                         <input type="password" class="form-control" id="pwd">
                     </div>
-                      <button type="submit" class="btn btn-default">Submit</button>
+                      <button type="submit" class="btn btn-default">जमा करें</button>
                 </form>
             </div>
             <div class="col-md-3 col-sm-3">
@@ -368,6 +366,6 @@ Indolingo Home
 
 {% block footer%}
 <footer>
-    <p class="text-center">Copyright &copy IndoLingo</p>
+    <p class="text-center">कॉपीराइट &copy भरतभाषा</p>
 </footer>
 {%endblock%}

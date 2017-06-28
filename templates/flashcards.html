@@ -113,6 +113,7 @@ Flashcards
         border-radius:25px;
         vertical-align: middle;
         display: inline-block;
+        cursor: pointer;
       }
 
       .shrinkCardFront h2,.shrinkCardBack h2{
@@ -154,9 +155,9 @@ Flashcards
     <!---Empty div-->
   </div>
   <div class="col-md-1 col-sm-1">
-    <div class="previous">
+    <!--<div class="previous">
         <a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a>
-    </div>
+    </div>-->
   </div>
   <div class="col-md-4 col-sm-4">
     <!---
@@ -175,29 +176,29 @@ Flashcards
     <div id="card-2" class="card">
       <div class="front" style="border-radius:25px;">
         <hr><center>
-          <h2 id="flashcardworddisplay" style="color:white; vertical-align: middle; display: inline-block;"></h2>
+          <h2 class="flashcardworddisplay" style="color:white; vertical-align: middle; display: inline-block;"></h2>
           <br>
         <hr><br>
         <div style="height:50px; width:100%; background-color:#EF861E;border-radius:30px">
-          <p id="flashcardmeaningdisplay" style="font-size:20px;color:white;padding:15px 0 5px 5px"></p>
+          <p id="displaytext" style="font-size:20px;color:white;padding:15px 0 5px 5px"></p>
         </div>
         </center>
       </div>
       <div class="back" style="border-radius:25px;">
         <hr><center>
-          <h2 style="color:white">Word</h2>
+          <h2 class="flashcardworddisplay" style="color:white"></h2>
         </center><hr>
         <center>
-          <p>Meaning</p>
+          <p id="flashcardmeaningdisplay" style="font-size:20px;color:white;padding:5px 0 5px 5px"></p>
         </center>
       </div>
     </div>
   </center>
   </div>
   <div class="col-md-1 col-sm-1">
-    <div class="next">
+    <!--<div class="next">
         <a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a>
-    </div>
+    </div>-->
   </div>
   <div class="col-md-3 col-sm-3">
 
@@ -213,33 +214,7 @@ Flashcards
   <div class="col-md-8 col-sm-8">
     <div class="jumbotron" id="addrow">
       <div class="row" id="addword">
-      <!--  <div class="col-md-4 col-sm-4">
-          <div class="flashcardwords">
-            <center>
-              <div class="shrinkCardFront">
-                <h2>Word</h2>
-              </div>
-            </center>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-4">
-          <div class="flashcardwords">
-            <center>
-              <div class="shrinkCardFront">
-                <h2>Word</h2>
-              </div>
-            </center>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-4">
-          <div class="flashcardwords">
-            <center>
-              <div class="shrinkCardFront">
-                <h2>Word</h2>
-              </div>
-            </center>
-          </div>
-        </div>--><h2 onclick="populate()"></h2>
+        <!---->
       </div>
     </div>
   </div>
@@ -261,8 +236,13 @@ Flashcards
         autoSize: false
       });
     });*/
-    function populate(){
-      alert($(this).attr('id'));
+    function populate(idd, mean){
+      //alert($(idd).html());
+      $(".flashcardworddisplay").text($(idd).html());
+      //alert($("#displaytext").text(meaning));
+      //alert(mean);
+      $("#displaytext").text("Click for meaning");
+      $("#flashcardmeaningdisplay").text(mean);
     }
 
       window.onload = function(){
@@ -295,12 +275,17 @@ Flashcards
             //var obj = data.words.replace("[","|").replace("]","|").split("|");
             //obj[1]+="\"word\":joy,\"meaning\":\"a feeling of great pleasure and happiness.\"";
             var obj = data.words;
-            alert(obj);
+            //alert(obj);
             var object = JSON.parse(obj);
-            alert(object[0].meaning);
+
+            //alert(object[0].meaning);
             //alert(object["word"]);
             for(i=0;i<object.length;i++){
-              $("#addword").append("<div class='col-md-4 col-sm-4'><div class='flashcardwords'><center><div class='shrinkCardFront'><button id='"+object[i].word+"' onclick='populate()'>" +object[i].word+"</button></div></center></div></div>");
+              mean = object[i].meaning.split("'").join("");
+              //alert(object[i].meaning);
+              //alert(mean);
+              $("#addword").append("<div class='col-md-4 col-sm-4'><div class='flashcardwords'><center><div class='shrinkCardFront'><h2 id='"+i+"' onclick='populate("+"\"#"+i+"\""+","+"\"" +mean+"\""+")'>" +object[i].word+"</h2></div></center></div></div>");
+
 
 
               if(i%3==2){

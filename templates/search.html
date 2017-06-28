@@ -439,8 +439,10 @@ Search
               <br><br>
               <h3 id="keyword" style="text-align:center"></h3>
               <br>
-              <div id="wordMeaning" style="text-align:left"></div><br>
-              <button id="addToFlag" type="submit" name="button" style="display:none; text-align:center"></button>
+              <div id="wordMeaning" style="text-align:center"></div><br>
+              <center>
+                <button id="addToFlag" type="submit" name="button" style="display:none; text-align:center"></button>
+              </center>
               <div id="Flagged" style="text-align:center"></div><br>
 
               </div>
@@ -521,7 +523,7 @@ Search
   		$.ajax({
   			data : {
   				word : $('#SKeyword').val(),
-          lang: "English"
+          lang: "en"
           //lang : $('#lang').val()
   			},
   			type : 'POST',
@@ -572,7 +574,7 @@ Search
   		$.ajax({
   			data : {
   				word : $('#SKeyword').val(),
-          lang: "English"
+          lang: "en"
           //lang : $('#lang').val()
   			},
   			type : 'POST',
